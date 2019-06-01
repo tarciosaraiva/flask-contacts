@@ -1,0 +1,7 @@
+{% extends "layout/base.html" %}
+{% block title %}Edit contact{% endblock %}
+{% block content %}
+<h1>Editing <small>{{contact.full_name() if contact.full_name()|trim is not sameas "" else contact.id}}</small></h1>
+{% include "partials/form.html" ignore missing %}
+{% include "partials/back_home.html" ignore missing %}
+{% endblock %}

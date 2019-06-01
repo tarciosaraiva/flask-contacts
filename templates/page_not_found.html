@@ -1,0 +1,9 @@
+{% extends "layout/base.html" %}
+{% block title %}Not found{% endblock %}
+{% block content %}
+<h1>Not found</h1>
+
+<p>We are sorry but we could not find what you're looking for.</p>
+
+{% include "partials/back_home.html" ignore missing %}
+{% endblock %}

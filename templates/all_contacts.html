@@ -1,0 +1,40 @@
+{% extends "layout/base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<h1>My Contacts</h1>
+<table width="100%">
+    <thead>
+        <tr>
+            <th>Avatar</th>
+            <th>Name (or ID)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contact in contacts %}
+        <tr>
+            <td align="center">
+                <img src="http://www.gravatar.com/avatar/{{contact.gravatar_hash}}" />
+            </td>
+            <td align="center">
+                <a href="/contacts/{{contact.id}}">{{contact.full_name() if contact.full_name()|trim is not sameas "" else contact.id}}
+                </a>
+            </td>
+            <td align="right">
+                <form method="post" action="/contacts/{{contact.id}}">
+                    <input type="submit" value="Delete" />
+                    <input type="hidden" name="action" value="delete" />
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                [ <a href="/contacts">create new contact</a> ]
+            </td>
+        </tr>
+    </tfoot>
+</table>
+{% endblock %}

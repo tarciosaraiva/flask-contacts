@@ -1,0 +1,32 @@
+<div class="form-avatar">
+    <div class="avatar">
+        <img src="http://www.gravatar.com/avatar/{{contact.gravatar_hash}}" />
+    </div>
+    <form class="form" method="POST">
+        <div class="form-control">
+            <label for="first_name">First name</label>
+            <input type="text" name="first_name" id="first_name"
+                value="{{ request.form['first_name'] or contact.first_name }}" required />
+        </div>
+        <div class="form-control">
+            <label for="last_name">Last name</label>
+            <input type="text" name="last_name" id="last_name"
+                value="{{ request.form['last_name'] or contact.last_name }}" required />
+        </div>
+        <div class="form-control">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" value="{{ request.form['email'] or contact.email }}" required />
+        </div>
+        <div class="form-control">
+            <label for="date_of_birth">Date of birth</label>
+            <input type="date" name="date_of_birth" id="date_of_birth"
+                value="{{ request.form['date_of_birth'] or contact.date_of_birth }}" required />
+        </div>
+
+        <input type="hidden" name="id" id="id" value="{{contact.id}}" />
+
+        <div class="form-action">
+            <input type="submit" value="Save">
+        </div>
+    </form>
+</div>
