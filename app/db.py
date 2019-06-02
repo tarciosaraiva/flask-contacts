@@ -1,13 +1,12 @@
 import json
 
-from model.contact import Contact
+from app.model.contact import Contact
 
 class Db:
 
-    DATA_FILE = './data/contacts.json'
-
-    def __init__(self):
-        json_data = json.load(open(Db.DATA_FILE, "r"))
+    def setup(self, data_file):
+        json_data = json.load(open(data_file, "r"))
+        self.data_file = data_file
         self.data = self.__parse(json_data)
 
     def __parse(self, json_data):
@@ -22,7 +21,7 @@ class Db:
     def delete_contact(self, contact_id):
         contact = self.load_contact(contact_id)
         self.data.remove(contact)
-        json.dump({'contacts': self.__unparse()}, open(Db.DATA_FILE, 'w'))
+        json.dump({'contacts': self.__unparse()}, open(self.data_file, 'w'))
 
     def new_contact(self):
         contact = Contact()
@@ -32,4 +31,6 @@ class Db:
     def save_contact(self, contact_request):
         contact = self.load_contact(contact_request.get('id'))
         contact.from_form_request(contact_request)
-        json.dump({'contacts': self.__unparse()}, open(Db.DATA_FILE, 'w'))
+        json.dump({'contacts': self.__unparse()}, open(self.data_file, 'w'))
+
+db_singleton = Db()
