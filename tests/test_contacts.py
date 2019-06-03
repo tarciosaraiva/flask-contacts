@@ -26,7 +26,21 @@ def runner(app):
     """A test runner for the app's Click commands."""
     return app.test_cli_runner()
 
+def test_show_new_contact_form(client):
+    response = client.get('/contacts')
+    assert 200 == response.status_code
+
+def test_add_contact(client):
+    response = client.post('/contacts', data=dict(
+        id="abc-1234",
+        first_name="John",
+        last_name="Doe",
+        email="john.doe@gmail.com",
+        date_of_birth="1987-10-03"
+    ), follow_redirects=True)
+    assert 200 == response.status_code
+
 def test_all_contacts(client):
     """list all contacts"""
-    rv = client.get('/')
-    assert 200 == rv.status_code
+    response = client.get('/')
+    assert 200 == response.status_code

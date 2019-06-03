@@ -16,7 +16,7 @@ class Db:
         return list(map(lambda c: c.serialize(), self.data))
 
     def load_contact(self, contact_id):
-        return next(filter(lambda contact: contact.id == contact_id, self.data), None)
+        return next(filter(lambda contact: contact.id == contact_id, self.data), Contact())
 
     def delete_contact(self, contact_id):
         contact = self.load_contact(contact_id)

@@ -8,13 +8,13 @@ from app.routes import bp
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
-   
+
     db_file = os.path.join(app.instance_path, 'data/contacts.json')
 
     app.config.from_mapping(
 	DATABASE=db_file
     )
-   
+
     if test_config is not None:
         app.config.update(test_config)
     else:

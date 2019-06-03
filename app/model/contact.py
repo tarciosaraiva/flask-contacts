@@ -22,6 +22,7 @@ class Contact:
         return contact
 
     def from_form_request(self, contact_req):
+        self.id = contact_req.get('id')
         self.first_name = contact_req.get('first_name')
         self.last_name = contact_req.get('last_name')
         self.email = contact_req.get('email')

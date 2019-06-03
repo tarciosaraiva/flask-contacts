@@ -6,8 +6,12 @@ verify_ssl = true
 [packages]
 Flask = "~=1.0"
 
+[dev-packages]
+pytest = "~=4.6"
+
 [requires]
 python_version = "3.7"
 
-[dev-packages]
-pytest = "~=4.6"
+[scripts]
+tests = "pytest -v --disable-warnings"
+
