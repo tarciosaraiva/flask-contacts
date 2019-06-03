@@ -1,4 +1,7 @@
 from flask import Blueprint, redirect, url_for, render_template, request, g
+import pyowm
+
+owm = pyowm.OWM('30f2125f6dc0f2c87bff5355b274ad56')
 
 from app.db import db_singleton
 
@@ -7,7 +10,10 @@ bp = Blueprint('app', __name__, url_prefix='/')
 @bp.route('/')
 def index():
     contacts = db_singleton.data
-    return render_template('all_contacts.html', contacts=contacts)
+    observation = owm.weather_at_place('Melbourne,AU')
+    w = observation.get_weather()
+
+    return render_template('all_contacts.html', contacts=contacts, weather=w)
 
 @bp.route('/contacts', methods=['GET', 'POST'])
 def contacts():

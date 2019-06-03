@@ -31,10 +31,15 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3">
+            <td>
                 [ <a href="/contacts">create new contact</a> ]
             </td>
-        </tr>
+            <td colspan="2" align="right">
+	        <strong>Current weather: {{weather.get_temperature('celsius')['temp']}} C</strong>
+		<br/>
+		<small>Max today: {{weather.get_temperature('celsius')['temp_max']}} C, Min today: {{weather.get_temperature('celsius')['temp_min']}} C</small>
+            </td>
+	</tr>
     </tfoot>
 </table>
 {% endblock %}
